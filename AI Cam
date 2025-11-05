@@ -1,0 +1,322 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Yashn4364356/To-Do-Or-Not-To-Do/blob/main/AI%20Cam\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "background_save": true,
+          "referenced_widgets": [
+            "1db33ca73eb44e99b8182c141d8a5f36",
+            "12e728c5081a476fb18511483a43a468"
+          ]
+        },
+        "id": "8tsSAlJpZHpH",
+        "outputId": "3892e119-5e9e-4532-a569-04232f665c82"
+      },
+      "outputs": [
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "✅ Columns: ['text', 'label']\n"
+          ]
+        },
+        {
+          "data": {
+            "application/vnd.jupyter.widget-view+json": {
+              "model_id": "1db33ca73eb44e99b8182c141d8a5f36",
+              "version_major": 2,
+              "version_minor": 0
+            },
+            "text/plain": [
+              "Map:   0%|          | 0/4000 [00:00<?, ? examples/s]"
+            ]
+          },
+          "metadata": {},
+          "output_type": "display_data"
+        },
+        {
+          "data": {
+            "application/vnd.jupyter.widget-view+json": {
+              "model_id": "12e728c5081a476fb18511483a43a468",
+              "version_major": 2,
+              "version_minor": 0
+            },
+            "text/plain": [
+              "Map:   0%|          | 0/1000 [00:00<?, ? examples/s]"
+            ]
+          },
+          "metadata": {},
+          "output_type": "display_data"
+        },
+        {
+          "name": "stderr",
+          "output_type": "stream",
+          "text": [
+            "Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at distilbert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight', 'pre_classifier.bias', 'pre_classifier.weight']\n",
+            "You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.\n",
+            "/tmp/ipython-input-794274511.py:59: FutureWarning: `tokenizer` is deprecated and will be removed in version 5.0.0 for `Trainer.__init__`. Use `processing_class` instead.\n",
+            "  trainer = Trainer(\n",
+            "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py:666: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.\n",
+            "  warnings.warn(warn_msg)\n"
+          ]
+        },
+        {
+          "data": {
+            "text/html": [
+              "\n",
+              "    <div>\n",
+              "      \n",
+              "      <progress value='500' max='500' style='width:300px; height:20px; vertical-align: middle;'></progress>\n",
+              "      [500/500 45:00, Epoch 1/1]\n",
+              "    </div>\n",
+              "    <table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              " <tr style=\"text-align: left;\">\n",
+              "      <th>Step</th>\n",
+              "      <th>Training Loss</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <td>20</td>\n",
+              "      <td>1.149800</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>40</td>\n",
+              "      <td>0.651300</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>60</td>\n",
+              "      <td>0.509000</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>80</td>\n",
+              "      <td>0.523700</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>100</td>\n",
+              "      <td>0.489400</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>120</td>\n",
+              "      <td>0.423300</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>140</td>\n",
+              "      <td>0.396200</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>160</td>\n",
+              "      <td>0.399700</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>180</td>\n",
+              "      <td>0.422800</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>200</td>\n",
+              "      <td>0.415700</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>220</td>\n",
+              "      <td>0.403700</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>240</td>\n",
+              "      <td>0.400600</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>260</td>\n",
+              "      <td>0.359700</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>280</td>\n",
+              "      <td>0.327600</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>300</td>\n",
+              "      <td>0.528300</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>320</td>\n",
+              "      <td>0.409600</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>340</td>\n",
+              "      <td>0.297400</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>360</td>\n",
+              "      <td>0.428700</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>380</td>\n",
+              "      <td>0.262900</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>400</td>\n",
+              "      <td>0.393000</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>420</td>\n",
+              "      <td>0.351200</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>440</td>\n",
+              "      <td>0.379100</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>460</td>\n",
+              "      <td>0.456700</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>480</td>\n",
+              "      <td>0.365700</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <td>500</td>\n",
+              "      <td>0.511000</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table><p>"
+            ],
+            "text/plain": [
+              "<IPython.core.display.HTML object>"
+            ]
+          },
+          "metadata": {},
+          "output_type": "display_data"
+        },
+        {
+          "name": "stderr",
+          "output_type": "stream",
+          "text": [
+            "/usr/local/lib/python3.12/dist-packages/torch/utils/data/dataloader.py:666: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.\n",
+            "  warnings.warn(warn_msg)\n"
+          ]
+        },
+        {
+          "data": {
+            "text/html": [
+              "\n",
+              "    <div>\n",
+              "      \n",
+              "      <progress value='125' max='125' style='width:300px; height:20px; vertical-align: middle;'></progress>\n",
+              "      [125/125 03:03]\n",
+              "    </div>\n",
+              "    "
+            ],
+            "text/plain": [
+              "<IPython.core.display.HTML object>"
+            ]
+          },
+          "metadata": {},
+          "output_type": "display_data"
+        },
+        {
+          "name": "stdout",
+          "output_type": "stream",
+          "text": [
+            "\n",
+            "✅ Evaluation Results: {'eval_loss': 0.3577021062374115, 'eval_accuracy': 0.902, 'eval_runtime': 185.3121, 'eval_samples_per_second': 5.396, 'eval_steps_per_second': 0.675, 'epoch': 1.0}\n"
+          ]
+        }
+      ],
+      "source": [
+        "!pip install datasets transformers tensorflow -q\n",
+        "\n",
+        "from datasets import load_dataset\n",
+        "from transformers import (\n",
+        "    AutoTokenizer,\n",
+        "    TFAutoModelForSequenceClassification,\n",
+        "    create_optimizer\n",
+        ")\n",
+        "import tensorflow as tf\n",
+        "\n",
+        "\n",
+        "dataset = load_dataset(\"ag_news\")\n",
+        "\n",
+        "train_data = dataset[\"train\"].select(range(10000))\n",
+        "test_data = dataset[\"test\"].select(range(2000))\n",
+        "\n",
+        "# 2️⃣ Tokenizer\n",
+        "model_name = \"distilbert-base-uncased\"\n",
+        "tokenizer = AutoTokenizer.from_pretrained(model_name)\n",
+        "\n",
+        "def tokenize_fn(batch):\n",
+        "    return tokenizer(batch[\"text\"], truncation=True, padding=\"max_length\", max_length=128)\n",
+        "\n",
+        "train_data = train_data.map(tokenize_fn, batched=True)\n",
+        "test_data = test_data.map(tokenize_fn, batched=True)\n",
+        "\n",
+        "# 3️⃣ Convert to NumPy before feeding into tf.data\n",
+        "def to_tf_dataset(ds):\n",
+        "    input_ids = tf.convert_to_tensor(ds[\"input_ids\"])\n",
+        "    attention_mask = tf.convert_to_tensor(ds[\"attention_mask\"])\n",
+        "    labels = tf.convert_to_tensor(ds[\"label\"])\n",
+        "    return tf.data.Dataset.from_tensor_slices((\n",
+        "        {\"input_ids\": input_ids, \"attention_mask\": attention_mask},\n",
+        "        labels\n",
+        "    )).shuffle(1000).batch(16)\n",
+        "\n",
+        "tf_train_dataset = to_tf_dataset(train_data)\n",
+        "tf_eval_dataset = to_tf_dataset(test_data)\n",
+        "\n",
+        "# 4️⃣ Load model\n",
+        "model = TFAutoModelForSequenceClassification.from_pretrained(\n",
+        "    model_name,\n",
+        "    num_labels=4  # AG News has 4 categories\n",
+        ")\n",
+        "\n",
+        "# 5️⃣ Optimizer and compile\n",
+        "optimizer, schedule = create_optimizer(\n",
+        "    init_lr=2e-5,\n",
+        "    num_warmup_steps=0,\n",
+        "    num_train_steps=len(tf_train_dataset) * 2\n",
+        ")\n",
+        "model.compile(optimizer=optimizer, loss=model.compute_loss, metrics=[\"accuracy\"])\n",
+        "\n",
+        "# 6️⃣ Train\n",
+        "model.fit(tf_train_dataset, validation_data=tf_eval_dataset, epochs=2)\n",
+        "\n",
+        "# 7️⃣ Evaluate\n",
+        "loss, acc = model.evaluate(tf_eval_dataset)\n",
+        "print(f\"\\n✅ Done! Loss: {loss:.4f}, Accuracy: {acc:.4f}\")\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n",
+        "\n"
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPzJyLwusqeXyYOMExJVMHQ",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
