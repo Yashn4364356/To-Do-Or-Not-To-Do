@@ -1,0 +1,133 @@
+MainActivity-
+package com.example.b002_yn_m2_set1_mad;
+ 
+import static android.content.ContentValues.TAG;
+ 
+import android.content.res.AssetManager;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+ 
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+ 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
+ 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class MainActivity extends AppCompatActivity {
+    RecyclerView rcv;
+    WeatherAdapter adapter;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        rcv=findViewById(R.id.rv);
+        rcv.setLayoutManager(new LinearLayoutManager(this));
+        List<Weather> weatherList = new ArrayList<>();
+        AssetManager am=getAssets();
+        try {
+            InputStream i1 = am.open("weather_data.csv");
+            InputStreamReader i2=new InputStreamReader(i1);
+            CSVReader csv=new CSVReader(i2);
+            List<String[]> row=csv.readAll();
+            for(String[] rows:row)
+            {
+                Log.d(TAG, "Row: " + String.join(", ", rows));
+                weatherList.add(new Weather(rows[0], Double.parseDouble(rows[1]), Double.parseDouble(rows[2])));
+            }
+            adapter=new WeatherAdapter(weatherList);
+            rcv.setAdapter(adapter);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (CsvException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+weather adapter.java-
+package com.example.b002_yn_m2_set1_mad;
+ 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+ 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+ 
+import com.orhanobut.dialogplus.ViewHolder;
+ 
+import java.util.List;
+ 
+public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
+    private List<Weather> weatherList;
+ 
+    public WeatherAdapter(List<Weather> weatherList) {
+        this.weatherList = weatherList;
+    }
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.weather_layout, parent, false);
+        return new ViewHolder(view);
+    }
+ 
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Weather weather = weatherList.get(position);
+        holder.month.setText(weather.getMonth());
+        holder.rainfall.setText(String.valueOf(weather.getRainfall()));
+        holder.sun.setText(String.valueOf(weather.getSun()));
+    }
+ 
+    @Override
+    public int getItemCount() {
+        return weatherList.size();
+    }
+ 
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView month, rainfall, sun;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            month=itemView.findViewById(R.id.textView);
+            rainfall=itemView.findViewById(R.id.textView2);
+            sun=itemView.findViewById(R.id.textView3);
+        }
+    }
+ 
+}
+Weather.java-
+package com.example.b002_yn_m2_set1_mad;
+ 
+public class Weather {
+    private String month;
+    private double rainfall;
+    private double sun;
+    public Weather(String month, double rainfall, double sun) {
+        this.month = month;
+        this.rainfall = rainfall;
+        this.sun = sun;
+    }
+    public String getMonth() {
+        return month;
+    }
+    public double getRainfall() {
+        return rainfall;
+    }
+    public double getSun() {
+        return sun;
+    }
+}
