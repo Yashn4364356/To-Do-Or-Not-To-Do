@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio project</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/f11b53bb72.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="header">
+    <div class="container">
+        <nav>
+            <img src="piclogo.png" class="logo">
+            <ul id="sidemenu">
+                <li><a href="#header">Home</a></li>
+                <li><a href="#About">About</a></li>
+                <li><a href="#services">Sevices</a></li>
+                <li><a href="#Contact Us">Contact Us</a></li>
+                <i class="fas fa-times" onclick="closemenu()"></i>
+            </ul>
+            <i class="fas fa-bars" onclick="openmenu()" ></i>
+        </nav>
+        <div class="header-text">
+            <p>Welcome to</p>
+            <h1><span>Dr. Sripad's</span> Orthodontic Clinic<br>Here we craft beautiful smiles</h1>
+        </div>
+    </div>
+</div>
+
+<div id="About">
+    <div class="container">
+        <div class="row">
+            <div class="About-col-1">
+                <img src="pic1.png">
+            </div>
+            <div class="About-col-2">
+                <h1 class="sub-titles">About me</h1> 
+                <p>Dr. Sripad Nagarsekar's passion for orthodontics began when he joined St.George Hospital and Dental College, Mumbai.He was drawn to the transformation orthodontics brings both in straightening teeth and gaining confidence. He is thrilled to witness this each time he takes braces off his patients. Dr. Sripad earned his undergraduate degree with a gold medal. He did his masters in Orthodontics from the same prestigious institute earning his second gold medal.He has treated numerous patients so far, finding a perfect solution for every orthodontic challange.</p>   
+                    <div class="tab-titles">
+                    <p class="tab-links active link" onclick=opentab('Ideals')>Ideals</p>
+                    <p class="tab-links"onclick=opentab('Expertise')>Expertise</p>
+                    <p class="tab-links"onclick=opentab('Infrastructure')>Infrastructure</p>
+                </div>
+                <div class="tab-contents active-tab" id="Ideals">
+                    <ul>
+                        <li><span>Our ideals are our pride.</span><br>Our goal is to provide the best treatment outcome.</li>
+                        <li><span>Customised and cost effective treatment plans</span><br>to suit individual requirements without compromising the quality.</li>
+                        <li><span>Comfortable and enjoyable </span><br>treatment experience for our patients.</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="Expertise">
+                    <ul>
+                        <li><span>Smile correction</span><br>Painless treatment and faster results using the most advanced technology in the world.</li>
+                        <li><span>Jaw alignment</span><br>The best use of Orthodontic techniques tominimise the surgical requirements.</li>
+                        <li><span>Two stage treatment plans</span><br>to give you that perfect smile when you need it the most.</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="Infrastructure">
+                    <ul>
+                        <li><span>The best orthodontic clinic infrastructure in the city</span><br>with the state of the art dental equipments.</li>
+                        <li><span>Most hygienic envoirment</span><br>with top class autoclave for sterlization</li>
+                        <li><span>Advanced in-house orthodontic lab </span><br>for precise and perfect results without unncesssary delays. </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>        
+</div>
+<!-------------------services--------------->
+<div id="services">
+    <div class="container">
+    <h1 class="sub-titles">Services</h1>
+        <div class="service-list">
+            <div>
+                <h2>Corrective Treatments</h2>
+                <p>We offer wide range of Corrective Treatments for irregularities in teeth and jaws.</p>
+                <a href="#">learn more</a>
+            </div>
+            <div>
+                <h2>Collaborative Dental treatments</h2>
+                <p>We collaborate with dental surgeons to treat complex malocclusions and cleft palate.</p>
+                <a href="#">learn more</a>
+            </div> 
+            <div>
+                <h2>Post Treatment Care</h2>
+                <p>We provide retainers and ensure regular follow up visits to gaurantee life time results.</p>
+                <a href="#">learn more</a>
+            </div>
+        </div>          
+    </div>
+</div>
+<!-------------------contact us------------->
+<div id="Contact Us">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-titles">Contact Us</h1>
+                <p><i class="fas fa-paper-plane"></i>contact@example.com</p>
+                <p><i class="fas fa-phone-square-alt"></i>98********</p>
+                <div class="social-icons">
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>    
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="text" name="Email" placeholder="Your Email" required>
+                    <input type="number" name="Mobile Number" placeholder="Your Mobile" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg">Your form has been submitted.</span>  
+            </div>      
+        </div>
+    </div>
+</div>
+<script>
+
+    var tablinks= document.getElementsByClassName("tab-links");
+    var tabcontents= document.getElementsByClassName("tab-contents");
+
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab")
+    }
+</script>
+
+<script>
+    var sidemenu=document.getElementById("sidemenu");
+
+    function openmenu(){
+        sidemenu.style.right="0";
+    }
+    function closemenu() {
+      sidemenu.style.right="-200px";      
+    }
+
+</script>
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyZMvyUx4HakvkDnsO3_o83l_5zoh8J2_lYtvpkbp5YsQWhGf-SnyGKVOlerLAguQFD/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg= document.getElementById("msg")
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        msg.innerHTML="Your form has been submitted."
+        setTimeout(function(){
+            msg.innerHTML =""
+        },5000) 
+        form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+  
+</script>
+</body>
+</html>
+
+
+           
+                
